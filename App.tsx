@@ -1,9 +1,9 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import './style.css';
+import './main.js';
 
-
-export default function App() {
-  function Baner() {
+export default function Stronka() {
+  function BanerFS() {
     return (
       <div>
         <h2 className="baner"> Galeria miejsc ciekawych</h2>
@@ -11,30 +11,57 @@ export default function App() {
     );
   }
 
-  function Glowny() {
+  function SrodekFS() {
     return (
-      <div className="glowny">
-        <img className="glownezdj" src="./zdj/lanzarotte.jpg" />
-      </div>
-    );
-  }
-  
-  function Lewy() {
-    return (
-      <div className="lewy">
-        <h3>Przeglądaj zdjęcia</h3>
-        <img className="dodzdj" src="./assets/fotki/lanzarotte.jpg" /> {/*musi byc tak*/}
-        <img className="dodzdj" src="./zdj/pekin.jpg" /> {/*musi byc tak*/}
-        <img className="dodzdj" src="./zdj/serengeti.jpg" /> {/*musi byc tak*/}
-        <img className="dodzdj" src="./zdj/wenecja.jpg" /> {/*musi byc tak*/}
-        <img className="dodzdj" src="./zdj/tajlandia.jpg" /> {/*musi byc tak*/}
+      <div className="srodek">
+        <img className="srdkzdj" src="./fotki/dowolne.jpg" />
       </div>
     );
   }
 
-  function Prawy() {
+  function LewaFS() {
+    const [imageSrc, setImageSrc] = useState('dowolne.jpg');
+
+    const handleImageSwitcher = (image) => {
+      setImageSrc(`${image}.jpg`);
+    };
+
     return (
-      <div className="prawy">
+      <div className="lewa">
+        <h3>Przeglądaj zdjęcia</h3>
+
+        <img
+          onClick={() => handleImageSwitcher('lanzarotte')}
+          className="zdjecia"
+          src="./fotki/lanzarotte.jpg"
+        />
+        <img
+          onClick={() => handleImageSwitcher('pekin')}
+          className="zdjecia"
+          src="./fotki/pekin.jpg"
+        />
+        <img
+          onClick={() => handleImageSwitcher('serengeti')}
+          className="zdjecia"
+          src="./fotki/serengeti.jpg"
+        />
+        <img
+          onClick={() => handleImageSwitcher('wenecja')}
+          className="zdjecia"
+          src="./fotki/wenecja.jpg"
+        />
+        <img
+          onClick={() => handleImageSwitcher('tajlandia')}
+          className="zdjecia"
+          src="./fotki/tajlandia.jpg"
+        />
+      </div>
+    );
+  }
+
+  function PrawaFS() {
+    return (
+      <div className="prawa">
         <h3>Obrazy w naszej Galerii</h3>
         <table>
           <tr>
@@ -45,24 +72,22 @@ export default function App() {
           </tr>
         </table>
         <p>
-          Polub nas <img src="./zdj/icon-off.png" />
+          Polub nas <img src="./fotki/icon-off.png" />
         </p>
         <a href="https://pixabay.com">Odkryj więcej zdjęć</a>
       </div>
     );
   }
-  function Stopka() {
-    return (
-      <h2 className="baner"> Autor: Pan Wojciech Przemysław 20.04.2023</h2>
-    );
+  function StopkaFS() {
+    return <h2 className="stopka"> Autor: Filip Serwatka</h2>;
   }
   return (
     <div>
-      <Baner />
-      <Glowny />
-      <Lewy />
-      <Prawy />
-      <Stopka />
+      <BanerFS />
+      <SrodekFS />
+      <LewaFS />
+      <PrawaFS />
+      <StopkaFS />
     </div>
   );
 }
